@@ -20,6 +20,6 @@ endfor
 m5 = bi2de(h5);
 
 
-m5 = [flipud(rot90(x)),m5];
+#m5 = [flipud(rot90(x)),m5];
 
 disp(m5)
