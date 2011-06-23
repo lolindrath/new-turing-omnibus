@@ -34,7 +34,12 @@ m5 = [ 0,
        4027518960,
        1520805210,
        1019462460,
-       2523490710];
+       2523490710]
+
+m5_sorted = [(num, idx) for idx, num in enumerate(m5)].sort()
+
+def approx_search(list, value):
+    pass
 
 def encode(image):
 # takes a list of integers and encodes them for transfer
