@@ -14,10 +14,12 @@ class XPMP:
         self.pixels = pixels
 
         self.bw_colors = {}
+        self.bw_colors_reverse = {}
         self.bw_pixels = []
 
         for idx, color in enumerate(self.colors):
             self.bw_colors[color[0]] = (idx, color[2])
+            self.bw_colors_reverse[idx] = color[0]
 
         for row in self.pixels:
             for pixel in row:

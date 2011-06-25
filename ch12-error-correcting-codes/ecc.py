@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import sys,os, pprint, random
+import sys,os, pprint, random, string
 
 import xpmp
 
@@ -40,6 +40,28 @@ m5_sorted = [(num, idx) for idx, num in enumerate(m5)]
 m5_sorted.sort()
 
 NOT_FOUND = -1
+
+def write_xpm(file_name, image, base_xpmp):
+    f = open('xpm.template', 'r')
+    t = f.read()
+    f.close()
+
+    c = "\""
+    count = 0
+    for pixel in image:
+        c += base_xpmp.bw_colors_reverse[pixel]
+        if count == base_xpmp.values[0]:
+            c += "\"\n\""
+            count = 0
+
+        count += 1
+
+    tmpl = string.Template(t)
+    t = tmpl.substitute(content="%s" % c)
+
+    f = open(file_name, 'w')
+    f.write(t)
+    f.close()
 
 # Very naive and very slow approximate search
 def approx_search(l, value):
@@ -127,5 +149,7 @@ for bit_error in range(1, 10+1):
         print("Image matches!")
     else:
         print("Image doesn't match!")
+
+    write_xpm("%d.xpm" % bit_error, fixed_image, image)
 
 
